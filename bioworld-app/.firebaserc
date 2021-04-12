@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "bioworld-app": {
+      "hosting": {
+        "bioworld-app": [
+          "bioworld-app"
+        ]
+      }
+    }
+  }
+}

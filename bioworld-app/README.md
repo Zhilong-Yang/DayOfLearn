@@ -53,12 +53,25 @@ prettier 格式化文本
 # 在打开示例代码的vscode窗口中，使用快捷键“CTRL + Shift + P”打开vscode命令框，在框中输入“format”关键字，可以看到有2个选项 
 # 1. Format Document （快捷键 Shift+Alt+F）对整个文档做格式化
 # 2. Format Selection （快捷键Ctrl+K, Ctrl+F）对选择代码做格式化
+
+environment.dev.ts
+export const environment = {
+  production: false,
+  name: 'dev'
+};
+
+environment.prod.ts
+export const environment = {
+  production: true,
+  name:'prod'
+};
 ~~~
 
-6. 
+6. 修改build 和start
 
 ```shell
-
+angular.json
+package.json
 ```
 
 -----
