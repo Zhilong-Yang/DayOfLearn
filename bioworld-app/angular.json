@@ -23,6 +23,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
+            "buildOptimizer": false,
+            "optimization": false,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -49,7 +51,9 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "sourceMap": false
+              "sourceMap": false,
+              "buildOptimizer": true,
+              "optimization":true
             }
           }
         },
