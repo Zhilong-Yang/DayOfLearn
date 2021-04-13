@@ -48,7 +48,6 @@ ng serve -o
     "esModuleInterop": true
   }
 }
-
 prettier 格式化文本 
 # 在打开示例代码的vscode窗口中，使用快捷键“CTRL + Shift + P”打开vscode命令框，在框中输入“format”关键字，可以看到有2个选项 
 # 1. Format Document （快捷键 Shift+Alt+F）对整个文档做格式化
@@ -59,21 +58,32 @@ export const environment = {
   production: false,
   name: 'dev'
 };
-
 environment.prod.ts
 export const environment = {
   production: true,
   name:'prod'
 };
 ~~~
-
 6. 修改build 和start
 
 ```shell
 angular.json
 package.json
 ```
+7. 添加package
 
+```json
+"@angular/cdk": "^9.0.1",
+"@angular/localize": "~9.0.2",
+"@angular/material": "^9.0.1",
+"@angular/fire": "^5.3.0",
+"firebase": "^7.6.1",
+"@ngrx/effects": "^8.6.0",
+"@ngrx/entity": "^8.6.0",
+"@ngrx/store": "^8.6.0",
+"@ngrx/store-devtools": "^8.6.0",
+"ngx-image-cropper": "^3.0.3"
+```
 -----
 
 
