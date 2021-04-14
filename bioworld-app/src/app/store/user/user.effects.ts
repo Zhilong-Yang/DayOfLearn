@@ -78,6 +78,11 @@ export class UserEffects {
         switchMap(credentials =>
             from(this.afAuth.createUserWithEmailAndPassword(credentials.email, credentials.password)).pipe(
                 tap(() => {
+                    this.afAuth.currentUser.then(u => u.sendEmailVerification(environment.firebase.actionCodeSettings))
+                    .then(() => {
+                      this.router.navigate(['/auth/email-confirm']);
+                    })
+
                     // this.afAuth.currentUser.sendEmailVerification(
                     //     environment.firebase.actionCodeSettings
                     // );
