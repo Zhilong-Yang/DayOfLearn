@@ -17,39 +17,49 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "lodash",
+              "firebase",
+              "@angular/common/locales/fr",
+              "lodash/dropRight",
+              "@firebase/app",
+              "firebase/app",
+              "@firebase/auth",
+              "@firebase/component",
+              "@firebase/database",
+              "@firebase/firestore",
+              "@firebase/functions",
+              "@firebase/performance",
+              "@firebase/remote-config"
+            ],
             "outputPath": "dist",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-                        "optimization": false,
-                        "outputHashing": "all",
-                        "sourceMap": true,
-                        "extractCss": true,
-                        "namedChunks": false,
-                        "extractLicenses": true,
-                        "vendorChunk": false,
-                        "buildOptimizer": false,
-                        "budgets": [
-                            {
-                                "type": "initial",
-                                "maximumWarning": "2mb",
-                                "maximumError": "5mb"
-                            },
-                            {
-                                "type": "anyComponentStyle",
-                                "maximumWarning": "6kb",
-                                "maximumError": "10kb"
-                            }
-                        ],
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
+            "optimization": false,
+            "outputHashing": "all",
+            "sourceMap": true,
+            "extractCss": true,
+            "namedChunks": false,
+            "extractLicenses": true,
+            "vendorChunk": false,
+            "buildOptimizer": false,
+            "budgets": [
+              {
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "5mb"
+              },
+              {
+                "type": "anyComponentStyle",
+                "maximumWarning": "6kb",
+                "maximumError": "10kb"
+              }
             ],
-                        "styles": [
-                            "src/styles.scss"
-                        ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -59,8 +69,8 @@
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.dev.ts"
                 }
-                            ],
-                            "sourceMap": true
+              ],
+              "sourceMap": true
             },
             "prod": {
               "fileReplacements": [
@@ -71,7 +81,7 @@
               ],
               "sourceMap": false,
               "buildOptimizer": true,
-              "optimization":true
+              "optimization": true
             }
           }
         },
@@ -103,13 +113,8 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-                        "styles": [
-                            "src/styles.scss"
-                        ],
+            "assets": ["src/favicon.ico", "src/assets"],
+            "styles": ["src/styles.scss"],
             "scripts": []
           }
         },
@@ -121,9 +126,7 @@
               "tsconfig.spec.json",
               "e2e/tsconfig.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "e2e": {
