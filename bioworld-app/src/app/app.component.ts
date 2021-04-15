@@ -7,9 +7,9 @@ import * as fromRoot from './store';
 import * as fromDictionaries from './store/dictionaries';
 import * as fromUser from './store/user';
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   title = 'bioworldapp';
@@ -17,10 +17,10 @@ export class AppComponent implements OnInit {
     isAuthorized$: Observable<boolean>;
     user$: Observable<fromUser.User>;
 
-  constructor(
-    private store: Store<fromRoot.State>
-  ) {
-  }
+    constructor(
+        private store: Store<fromRoot.State>
+    ) {
+    }
 
     ngOnInit() {
         this.isAuthorized$ = this.store.pipe(select(fromUser.getIsAuthorized));

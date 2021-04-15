@@ -23,16 +23,33 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "buildOptimizer": false,
-            "optimization": false,
+                        "optimization": false,
+                        "outputHashing": "all",
+                        "sourceMap": true,
+                        "extractCss": true,
+                        "namedChunks": false,
+                        "extractLicenses": true,
+                        "vendorChunk": false,
+                        "buildOptimizer": false,
+                        "budgets": [
+                            {
+                                "type": "initial",
+                                "maximumWarning": "2mb",
+                                "maximumError": "5mb"
+                            },
+                            {
+                                "type": "anyComponentStyle",
+                                "maximumWarning": "6kb",
+                                "maximumError": "10kb"
+                            }
+                        ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
-              "src/styles.scss"
-            ],
+                        "styles": [
+                            "src/styles.scss"
+                        ],
             "scripts": []
           },
           "configurations": {
@@ -42,7 +59,8 @@
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.dev.ts"
                 }
-              ]
+                            ],
+                            "sourceMap": true
             },
             "prod": {
               "fileReplacements": [
@@ -89,10 +107,9 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/purple-green.css",
-              "src/styles.scss"
-            ],
+                        "styles": [
+                            "src/styles.scss"
+                        ],
             "scripts": []
           }
         },

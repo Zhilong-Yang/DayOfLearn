@@ -12,29 +12,29 @@ import { DateRangeModule } from './date-range/date-range.module';
 import { AutocompleteModule } from './autocomplete/autocomplete.module';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    InputModule,
-    FormFieldModule,
-    PasswordModule,
-    SelectModule,
-    CheckboxesModule,
-    RadiosModule,
-    DateModule,
-    DateRangeModule,
-    AutocompleteModule
-  ],
-  exports: [
-    InputModule,
-    FormFieldModule,
-    PasswordModule,
-    SelectModule,
-    CheckboxesModule,
-    RadiosModule,
-    DateModule,
-    DateRangeModule,
-    AutocompleteModule
-  ]
+    declarations: [],
+    imports: [
+        CommonModule,
+        InputModule,
+        FormFieldModule,
+        PasswordModule,
+        SelectModule,
+        CheckboxesModule,
+        RadiosModule,
+        DateModule,
+        DateRangeModule,
+        AutocompleteModule
+    ],
+    exports: [
+        InputModule,
+        FormFieldModule,
+        PasswordModule,
+        SelectModule,
+        CheckboxesModule,
+        RadiosModule,
+        DateModule,
+        DateRangeModule,
+        AutocompleteModule
+    ]
 })
 export class ControlsModule { }

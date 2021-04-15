@@ -5,12 +5,12 @@ import { PasswordComponent } from './password.component';
 
 
 @NgModule({
-  declarations: [PasswordComponent],
-  imports: [
-    CommonModule
-  ],
-  exports:[
-    PasswordComponent
-  ]
+    declarations: [PasswordComponent],
+    imports: [
+        CommonModule
+    ],
+    exports: [
+        PasswordComponent
+    ]
 })
 export class PasswordModule { }

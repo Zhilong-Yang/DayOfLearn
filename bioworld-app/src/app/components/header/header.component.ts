@@ -2,10 +2,10 @@ import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter
 import { Router } from '@angular/router';
 import { User } from '@app/store/user';
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
 
@@ -16,12 +16,12 @@ export class HeaderComponent implements OnInit {
 
     constructor(private router: Router) { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
-  onSignOut(): void {
-    this.signOut.emit();
-  }
+    onSignOut(): void {
+        this.signOut.emit();
+    }
 
     onProfileNavigate(): void {
         const path = this.user ? this.user.uid : 'new';

@@ -5,12 +5,12 @@ import { FormFieldComponent } from './form-field.component';
 
 
 @NgModule({
-  declarations: [FormFieldComponent],
-  imports: [
-    CommonModule
-  ],
-  exports: [
-    FormFieldComponent
-  ]
+    declarations: [FormFieldComponent],
+    imports: [
+        CommonModule
+    ],
+    exports: [
+        FormFieldComponent
+    ]
 })
 export class FormFieldModule { }

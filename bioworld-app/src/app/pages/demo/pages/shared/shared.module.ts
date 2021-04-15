@@ -7,15 +7,15 @@ import { SharedComponent } from './shared.component';
 
 import { ButtonsModule, ControlsModule, IndicatorsModule, PopupsModule } from '@app/shared';
 @NgModule({
-  declarations: [SharedComponent],
-  imports: [
-    CommonModule,
-    SharedRoutingModule,
-    ReactiveFormsModule,
-    ButtonsModule,
-    ControlsModule,
-    IndicatorsModule,
-    PopupsModule
-  ]
+    declarations: [SharedComponent],
+    imports: [
+        CommonModule,
+        SharedRoutingModule,
+        ReactiveFormsModule,
+        ButtonsModule,
+        ControlsModule,
+        IndicatorsModule,
+        PopupsModule
+    ]
 })
 export class SharedModule { }
