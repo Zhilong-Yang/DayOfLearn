@@ -18,7 +18,11 @@ const routes: Routes = [
         path: 'static',
         loadChildren: () => import('./pages/static/static.module').then(m => m.StaticModule)
       },
-      {
+            {
+                path: 'profile',
+                loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfileModule)
+            },
+            {
         path: '',
         pathMatch: 'full',
         redirectTo: 'static/welcome'
