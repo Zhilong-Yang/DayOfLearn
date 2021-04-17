@@ -1,5 +1,5 @@
 # Ultimate Angular
-##HTML代码快速编写
+## HTML代码快速编写
 ~~~html
 #1.初始化 
 html:5 或!：用于HTML5文档类型
@@ -53,7 +53,7 @@ ul>li.item$*3
 </ul>  
 ~~~
 
-##CSS代码快速编写
+## CSS代码快速编写
 ~~~css
 #1.值
 p 表示%
