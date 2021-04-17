@@ -7,7 +7,7 @@ import {
   AfterContentInit,
   EventEmitter,
   OnInit,
-  Output, ChangeDetectorRef
+  Output, ChangeDetectorRef, ViewChild, ElementRef
 } from '@angular/core';
 import {User} from './auth-form.interface';
 import {AuthRememberComponent} from './auth-remember/auth-remember.component';
@@ -19,11 +19,13 @@ import {AuthMessageComponent} from '../auth-message/auth-message.component';
   styleUrls: ['./auth-form.component.scss']
 })
 export class AuthFormComponent implements OnInit, AfterContentInit, AfterViewInit {
+
+  showMessage = false;
+
   @Output() submitted: EventEmitter<User> = new EventEmitter<User>();
   @ContentChildren(AuthRememberComponent) remember?: QueryList<AuthRememberComponent>;
   @ViewChildren(AuthMessageComponent) message?: QueryList<AuthMessageComponent>;
-
-  showMessage = false;
+  @ViewChild('email') email?: ElementRef;
 
   constructor(private cd: ChangeDetectorRef) {
 
@@ -33,6 +35,7 @@ export class AuthFormComponent implements OnInit, AfterContentInit, AfterViewIni
   }
 
   ngAfterViewInit(): void {
+    console.log(this.email);
     if (this.message) {
       this.message.forEach((message) => {
         message.days = 30;
