@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthFormComponent } from './auth-form/auth-form.component';
 import {FormsModule} from '@angular/forms';
+import { AuthRememberComponent } from './auth-form/auth-remember/auth-remember.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthFormComponent
+    AuthFormComponent,
+    AuthRememberComponent
   ],
   imports: [
     BrowserModule,

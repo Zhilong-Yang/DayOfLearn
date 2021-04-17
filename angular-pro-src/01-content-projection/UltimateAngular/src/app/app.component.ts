@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {User} from './auth-form/auth-form.interface';
 
 @Component({
@@ -8,12 +8,17 @@ import {User} from './auth-form/auth-form.interface';
 })
 export class AppComponent {
   title = 'UltimateAngular';
+  rememberMe = false;
+
+  rememberUser(remember: boolean): void {
+    this.rememberMe = remember;
+  }
 
   createUser(user: User): void {
     console.log('Create account', user);
   }
 
-  loginUser(user: User): void{
-    console.log('Login', user);
+  loginUser(user: User): void {
+    console.log('Login', user, this.rememberMe);
   }
 }
