@@ -33,6 +33,7 @@ export class AppComponent implements AfterViewInit {
     const component = this.entry?.createComponent(authFormFactory);
     // @ts-ignore
     component.instance.title = 'Create account';
+    component?.instance.submitted.subscribe(this.loginUser);
     this.cdr.detectChanges();
   }
 
