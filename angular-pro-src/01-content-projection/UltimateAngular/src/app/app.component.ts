@@ -1,41 +1,20 @@
-import {Component, ChangeDetectionStrategy} from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  changeDetection: ChangeDetectionStrategy.Default,
-  styleUrls: ['./app.component.scss'],
   template: `
     <div>
-      <button (click)="addProp()">Add property</button>
-      <button (click)="changeUser()">Change user object</button>
-      <button (click)="changeName()">Change name property</button>
-      <div class="users">
-        <app-example-one [user]="user"></app-example-one>
-        <app-example-two [user]="user"></app-example-two>
-      </div>
+      <label>
+        Credit Card Number
+        <input
+          name="credit-card"
+          type="text"
+          placeholder="Enter your 16-digit card number"
+          credit-card>
+      </label>
     </div>
   `
 })
 export class AppComponent {
-  user: any = {
-    name: 'Mark Hoppus',
-    age: 44,
-    location: 'California'
-  };
 
-  addProp(): void {
-    this.user.email = 'blink@blink-182.net';
-  }
-
-  changeName(): void {
-    this.user.name = 'Travis Barker';
-  }
-
-  changeUser(): void {
-    this.user = {
-      name: 'Tom Delonge',
-      age: 41,
-      location: 'California'
-    };
-  }
 }
