@@ -19,6 +19,9 @@ import {User} from './auth-form/auth-form.interface';
       <button (click)="destroyComponent()">
         Destroy
       </button>
+      <button (click)="moveComponent()">
+        Move
+      </button>
       <div #entry></div>
     </div>
   `
@@ -36,7 +39,9 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     const authFormFactory = this.resolver.resolveComponentFactory(AuthFormComponent);
-    this.component = this.entry?.createComponent(authFormFactory);
+    // @ts-ignore
+    this.entry.createComponent(authFormFactory);
+    this.component = this.entry?.createComponent(authFormFactory, 0);
     // @ts-ignore
     this.component.instance.title = 'Create account';
     this.component?.instance.submitted.subscribe(this.loginUser);
@@ -46,6 +51,12 @@ export class AppComponent implements AfterViewInit {
   destroyComponent(): void {
     // @ts-ignore
     this.component.destroy();
+  }
+
+  moveComponent(): void {
+    // @ts-ignore
+    // tslint:disable-next-line:no-non-null-assertion
+    this.entry.move(this.component!.hostView, 1);
   }
 
   loginUser(user: User): void {
