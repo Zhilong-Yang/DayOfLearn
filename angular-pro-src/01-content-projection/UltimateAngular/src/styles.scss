@@ -56,6 +56,7 @@ button {
   padding: 5px 10px;
   text-align: center;
   color: #fff;
+  margin-left: 10px;
 }
 button:disabled {
   cursor: not-allowed;
@@ -87,9 +88,7 @@ app-root {
   box-shadow: 0 1px 4px rgba(53,60,72,0.1);
   padding: 30px;
 }
-example-one {
 
-}
 label {
   margin-bottom: 20px;
 }
@@ -102,10 +101,4 @@ auth-message {
 .users {
   margin-top: 20px;
   display: flex;
-}
-example-one {
-  background: rgba(0, 0, 0, 0.1);
-}
-example-one, example-two {
-  padding: 10px 15px;
 }

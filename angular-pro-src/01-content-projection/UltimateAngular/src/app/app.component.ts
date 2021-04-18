@@ -3,6 +3,7 @@ import {Component, ChangeDetectionStrategy} from '@angular/core';
 @Component({
   selector: 'app-root',
   changeDetection: ChangeDetectionStrategy.Default,
+  styleUrls: ['./app.component.scss'],
   template: `
     <div>
       <button (click)="addProp()">Add property</button>

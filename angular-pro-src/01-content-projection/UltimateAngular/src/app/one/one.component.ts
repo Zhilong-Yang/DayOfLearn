@@ -7,6 +7,8 @@ import {Component, Input, ChangeDetectionStrategy} from '@angular/core';
     .example-one {
       font-size: 19px;
       margin-bottom: 10px;
+      background: rgba(0, 0, 0, 0.1);
+      padding: 10px 15px;
     }
   `],
   template: `
