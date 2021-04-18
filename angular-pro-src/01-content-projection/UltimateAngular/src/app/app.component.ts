@@ -16,8 +16,8 @@ import {User} from './auth-form/auth-form.interface';
   template: `
     <div>
       <div #entry></div>
-      <ng-template #tmpl>
-        Todd Motto : England, UK
+      <ng-template #tmpl let-name let-location="location">
+        {{ name }} : {{ location }}
       </ng-template>
     </div>
   `
@@ -35,7 +35,10 @@ export class AppComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.entry.createEmbeddedView(this.tmpl);
+    this.entry.createEmbeddedView(this.tmpl, {
+      $implicit: 'Motto Todd',
+      location: 'UK, England'
+    });
     this.cdr.detectChanges();
   }
 }
