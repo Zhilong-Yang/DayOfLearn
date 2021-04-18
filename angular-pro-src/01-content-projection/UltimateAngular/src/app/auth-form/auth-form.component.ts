@@ -1,67 +1,41 @@
-import {
-  Component,
-  ViewChildren,
-  AfterViewInit,
-  ContentChildren,
-  QueryList,
-  AfterContentInit,
-  EventEmitter,
-  OnInit, Renderer2,
-  Output, ChangeDetectorRef, ViewChild, ElementRef
-} from '@angular/core';
+import {Component, Output, EventEmitter} from '@angular/core';
+
 import {User} from './auth-form.interface';
-import {AuthRememberComponent} from './auth-remember/auth-remember.component';
-import {AuthMessageComponent} from '../auth-message/auth-message.component';
 
 @Component({
   selector: 'app-auth-form',
-  templateUrl: './auth-form.component.html',
-  styleUrls: ['./auth-form.component.scss']
+  styles: [`
+    .email {
+      border-color: #9f72e6;
+    }
+  `],
+  template: `
+    <div>
+      <form (ngSubmit)="onSubmit(form.value)" #form="ngForm">
+        <h3>{{ title }}</h3>
+        <label>
+          Email address
+          <input type="email" name="email" ngModel #email>
+        </label>
+        <label>
+          Password
+          <input type="password" name="password" ngModel>
+        </label>
+        <button type="submit">
+          {{ title }}
+        </button>
+      </form>
+    </div>
+  `
 })
-export class AuthFormComponent implements OnInit, AfterContentInit, AfterViewInit {
+export class AuthFormComponent {
 
-  showMessage = false;
+  title = 'Login';
 
   @Output() submitted: EventEmitter<User> = new EventEmitter<User>();
-  @ContentChildren(AuthRememberComponent) remember?: QueryList<AuthRememberComponent>;
-  @ViewChildren(AuthMessageComponent) message?: QueryList<AuthMessageComponent>;
-  @ViewChild('email') email?: ElementRef;
-
-  constructor(private renderer: Renderer2,
-              private cd: ChangeDetectorRef) {
-
-  }
-
-  ngOnInit(): void {
-  }
-
-  ngAfterViewInit(): void {
-    if (this.email) {
-      // this.email.nativeElement.setAttribute('placeholder', 'Enter your email address');
-      // this.email.nativeElement.classList.add('email');
-      // this.email.nativeElement.focus();
-      this.renderer.setAttribute(this.email.nativeElement, 'placeholder', 'Enter your email address');
-      this.renderer.addClass(this.email.nativeElement, 'email');
-      this.renderer.selectRootElement(this.email.nativeElement).focus();
-    }
-
-    if (this.message) {
-      this.message.forEach((message) => {
-        message.days = 30;
-      });
-      this.cd.detectChanges();
-    }
-  }
-
-  ngAfterContentInit(): void {
-    if (this.remember) {
-      this.remember.forEach((item) => {
-        item.checked.subscribe((checked: boolean) => this.showMessage = checked);
-      });
-    }
-  }
 
   onSubmit(value: User): void {
     this.submitted.emit(value);
   }
+
 }
