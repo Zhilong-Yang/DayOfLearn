@@ -3,7 +3,9 @@ import {
   ViewContainerRef,
   ViewChild,
   AfterViewInit,
-  ComponentFactoryResolver, ChangeDetectorRef
+  ComponentFactoryResolver,
+  ChangeDetectorRef,
+  ComponentRef
 } from '@angular/core';
 
 import {AuthFormComponent} from './auth-form/auth-form.component';
@@ -14,6 +16,9 @@ import {User} from './auth-form/auth-form.interface';
   selector: 'app-root',
   template: `
     <div>
+      <button (click)="destroyComponent()">
+        Destroy
+      </button>
       <div #entry></div>
     </div>
   `
@@ -21,6 +26,7 @@ import {User} from './auth-form/auth-form.interface';
 export class AppComponent implements AfterViewInit {
 
   @ViewChild('entry', {read: ViewContainerRef}) entry?: ViewContainerRef;
+  component?: ComponentRef<AuthFormComponent>;
 
   constructor(
     private resolver: ComponentFactoryResolver,
@@ -30,11 +36,16 @@ export class AppComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     const authFormFactory = this.resolver.resolveComponentFactory(AuthFormComponent);
-    const component = this.entry?.createComponent(authFormFactory);
+    this.component = this.entry?.createComponent(authFormFactory);
     // @ts-ignore
-    component.instance.title = 'Create account';
-    component?.instance.submitted.subscribe(this.loginUser);
+    this.component.instance.title = 'Create account';
+    this.component?.instance.submitted.subscribe(this.loginUser);
     this.cdr.detectChanges();
+  }
+
+  destroyComponent(): void {
+    // @ts-ignore
+    this.component.destroy();
   }
 
   loginUser(user: User): void {
