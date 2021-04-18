@@ -80,7 +80,7 @@ h4 {
   margin: 0;
 }
 app-root {
-  display: inline-block;
+  display: block;
   background-color: #FFFFFF;
   border-radius: 2px;
   border: 1px solid #dce5f2;
@@ -109,4 +109,7 @@ label {
 }
 h3 {
   margin-bottom: 20px;
+}
+app-root div div {
+  flex: 15% 1 0;
 }
