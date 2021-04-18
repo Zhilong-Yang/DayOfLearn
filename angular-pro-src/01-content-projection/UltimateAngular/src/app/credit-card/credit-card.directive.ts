@@ -1,10 +1,13 @@
-import {Directive, HostListener, ElementRef} from '@angular/core';
+import {Directive, HostListener, HostBinding, ElementRef} from '@angular/core';
 
 @Directive({
   // tslint:disable-next-line:directive-selector
   selector: '[credit-card]'
 })
 export class CreditCardDirective {
+  @HostBinding('style.border')
+  border = '';
+
   @HostListener('input', ['$event'])
   onKeyDown(event: KeyboardEvent): void {
     const input = event.target as HTMLInputElement;
@@ -21,5 +24,9 @@ export class CreditCardDirective {
 
     input.value = numbers.join(' ');
 
+    this.border = '';
+    if (/[^\d]+/.test(trimmed)) {
+      this.border = '1px solid red';
+    }
   }
 }
