@@ -15,30 +15,15 @@ import {User} from './auth-form/auth-form.interface';
   selector: 'app-root',
   template: `
     <div>
-      <div #entry></div>
-      <ng-template #tmpl let-name let-location="location">
-        {{ name }} : {{ location }}
+      <ng-container
+        [ngTemplateOutlet]="tmpl">
+      </ng-container>
+      <ng-template #tmpl>
+        Todd Motto : England, UK
       </ng-template>
     </div>
   `
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent {
 
-  // @ts-ignore
-  @ViewChild('entry', {read: ViewContainerRef}) entry: ViewContainerRef;
-  // @ts-ignore
-  @ViewChild('tmpl') tmpl: TemplateRef<any>;
-
-  constructor(
-    private cdr: ChangeDetectorRef
-  ) {
-  }
-
-  ngAfterViewInit(): void {
-    this.entry.createEmbeddedView(this.tmpl, {
-      $implicit: 'Motto Todd',
-      location: 'UK, England'
-    });
-    this.cdr.detectChanges();
-  }
 }
