@@ -1,13 +1,15 @@
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
 
-import { AppComponent } from './app.component';
+import {AppComponent} from './app.component';
 import {CreditCardDirective} from './credit-card/credit-card.directive';
+import {TooltipDirective} from './tooltip/tooltip.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreditCardDirective
+    CreditCardDirective,
+    TooltipDirective
   ],
   imports: [
     BrowserModule
@@ -16,4 +18,5 @@ import {CreditCardDirective} from './credit-card/credit-card.directive';
     AppComponent
   ]
 })
-export class AppModule {}
+export class AppModule {
+}

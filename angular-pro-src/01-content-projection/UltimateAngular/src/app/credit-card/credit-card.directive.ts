@@ -5,7 +5,7 @@ import {Directive, HostListener, HostBinding, ElementRef} from '@angular/core';
   selector: '[credit-card]'
 })
 export class CreditCardDirective {
-  @HostBinding('style.border')
+  @HostBinding('class.border')
   border = '';
 
   @HostListener('input', ['$event'])
