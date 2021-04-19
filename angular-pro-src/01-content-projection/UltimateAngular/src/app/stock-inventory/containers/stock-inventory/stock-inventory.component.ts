@@ -1,10 +1,14 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, FormArray} from '@angular/forms';
-import {Product} from '../../models/product.interface';
+
+import {Product, Item} from '../../models/product.interface';
+import {StockInventoryService} from '../../services/stock-inventory.service';
+import {Observable} from 'rxjs';
+import 'rxjs-compat/add/observable/forkJoin';
 
 @Component({
   selector: 'app-stock-inventory',
-  styles: ['stock-inventory.component.scss'],
+  styleUrls: ['stock-inventory.component.scss'],
   template: `
     <div class="stock-inventory">
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -21,6 +25,7 @@ import {Product} from '../../models/product.interface';
 
         <app-stock-products
           [parent]="form"
+          [map]="productMap"
           (removed)="removeStock($event)">
           >
         </app-stock-products>
@@ -39,20 +44,10 @@ import {Product} from '../../models/product.interface';
     </div>
   `
 })
-export class StockInventoryComponent {
+export class StockInventoryComponent implements OnInit {
 
-  products: Product[] = [
-    {id: 1, price: 2800, name: 'MacBook Pro'},
-    {id: 2, price: 50, name: 'USB-C Adaptor'},
-    {id: 3, price: 400, name: 'iPod'},
-    {id: 4, price: 900, name: 'iPhone'},
-    {id: 5, price: 600, name: 'Apple Watch'},
-  ];
-
-  constructor(
-    private fb: FormBuilder
-  ) {
-  }
+  products!: Product[];
+  productMap!: Map<number, Product>;
 
   form = this.fb.group({
     store: this.fb.group({
@@ -60,11 +55,43 @@ export class StockInventoryComponent {
       code: ''
     }),
     selector: this.createStock({}),
-    stock: this.fb.array([
-      this.createStock({product_id: 1, quantity: 10}),
-      this.createStock({product_id: 3, quantity: 50}),
-    ])
+    stock: this.fb.array([])
   });
+
+  constructor(
+    private fb: FormBuilder,
+    private stockService: StockInventoryService
+  ) {
+  }
+
+  ngOnInit(): void {
+   this.stockService.getCartItems()
+      .subscribe((o: Item[]) => {
+        // cart.forEach(o => this.addStock(o));
+      });
+
+   this.stockService.getProducts()
+      .subscribe((products: Product[]) => {
+        // const myMap = products.map<[number, Product]>(product => [product.id, product]);
+        this.products = products.map();
+        console.log(products);
+        // this.productMap = new Map<number, Product>(myMap);
+        // this.products = products;
+      });
+    // const products = this.stockService.getProducts();
+
+    // Observable
+    //   .forkJoin(cart, products)
+    //   // tslint:disable-next-line:no-shadowed-variable
+    //   .subscribe(([cart, products]: [Item[], Product[]]) => {
+    //     const myMap = products
+    //       .map<[number, Product]>(product => [product.id, product]);
+    //
+    //     this.productMap = new Map<number, Product>(myMap);
+    //     this.products = products;
+    //     cart.forEach(item => this.addStock(item));
+    //   });
+  }
 
   // @ts-ignore
   // tslint:disable-next-line:typedef

@@ -1,5 +1,6 @@
 import {Component, Input, Output, EventEmitter} from '@angular/core';
 import {FormGroup, FormArray} from '@angular/forms';
+import {Product} from '../../models/product.interface';
 
 @Component({
   selector: 'app-stock-products',
@@ -12,7 +13,10 @@ import {FormGroup, FormArray} from '@angular/forms';
 
           <div class="stock-product__content" [formGroupName]="i">
             <div class="stock-product__name">
-              {{ item.value.product_id }}
+              {{ getProduct(item.value.product_id)!.name }}
+            </div>
+            <div class="stock-product__price">
+              {{ getProduct(item.value.product_id)!.price | currency:'USD':true }}
             </div>
             <input
               type="number"
@@ -38,8 +42,16 @@ export class StockProductsComponent {
   @Output()
   removed = new EventEmitter<any>();
 
+  @Input()
+  map!: Map<number, Product>;
+
+  // tslint:disable-next-line:typedef
+  getProduct(id: number) {
+    return this.map.get(id);
+  }
+
   // @ts-ignore
-  onRemove(group, index): void{
+  onRemove(group, index): void {
     this.removed.emit({group, index});
   }
 
