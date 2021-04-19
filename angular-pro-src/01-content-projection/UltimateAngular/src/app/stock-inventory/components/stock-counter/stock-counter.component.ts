@@ -35,7 +35,7 @@ const COUNTER_CONTROL_ACCESSOR = {
     </div>
   `
 })
-export class StockCounterComponent {
+export class StockCounterComponent implements ControlValueAccessor {
 
   // @ts-ignore
   private onTouch: Function;
