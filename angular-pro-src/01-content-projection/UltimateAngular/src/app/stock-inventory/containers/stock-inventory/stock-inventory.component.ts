@@ -65,17 +65,20 @@ export class StockInventoryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-   this.stockService.getCartItems()
-      .subscribe((items: Item[]) => {
-        console.log(items);
-        items.forEach(cart => this.addStock(cart));
-      });
+    const cart = this.stockService.getCartItems();
+    const products = this.stockService.getProducts();
 
-   this.stockService.getProducts()
-      .subscribe((products: Product[]) => {
-        const myMap = products.map<[number, Product]>(product => [product.id, product]);
-        this.products = products;
+    Observable
+      .forkJoin(cart, products)
+      // tslint:disable-next-line:no-shadowed-variable
+      .subscribe(([cart, products]: [Item[], Product[]]) => {
+
+        const myMap = products
+          .map<[number, Product]>(product => [product.id, product]);
+
         this.productMap = new Map<number, Product>(myMap);
+        this.products = products;
+        cart.forEach(item => this.addStock(item));
       });
   }
 

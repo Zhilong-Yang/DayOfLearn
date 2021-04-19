@@ -19,13 +19,15 @@ export class StockInventoryService {
     // @ts-ignore
     return this.http
       .get<Item[]>('/assets/cart.json')
-      .map((response: Response) => response);
+      .map((response: Response) => response)
+      .catch((error: any) => Observable.throw(error.json()));
   }
 
   getProducts(): Observable<Product[]> {
     // @ts-ignore
     return this.http
       .get<Product[]>('/assets/product.json')
-      .map((response: Response) => response);
+      .map((response: Response) => response)
+      .catch((error: any) => Observable.throw(error.json()));
   }
 }
