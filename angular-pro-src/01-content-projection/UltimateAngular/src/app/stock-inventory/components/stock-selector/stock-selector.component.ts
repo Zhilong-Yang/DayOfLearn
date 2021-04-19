@@ -43,6 +43,12 @@ export class StockSelectorComponent {
 
   onAdd(): void {
     this.added.emit(this.parent?.get('selector')?.value);
+
+    // @ts-ignore
+    this.parent.get('selector').reset({
+      product_id: '',
+      quantity: 10
+    });
   }
 
 }
