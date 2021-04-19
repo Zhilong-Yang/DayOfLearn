@@ -30,6 +30,10 @@ import 'rxjs-compat/add/observable/forkJoin';
           >
         </app-stock-products>
 
+        <div class="stock-inventory__price">
+          Total: {{ total | currency:'USD':'symbol' }}
+        </div>
+
         <div class="stock-inventory__buttons">
           <button
             type="submit"
@@ -48,6 +52,8 @@ export class StockInventoryComponent implements OnInit {
 
   products!: Product[];
   productMap!: Map<number, Product>;
+
+  total = 0;
 
   form = this.fb.group({
     store: this.fb.group({
@@ -79,7 +85,21 @@ export class StockInventoryComponent implements OnInit {
         this.productMap = new Map<number, Product>(myMap);
         this.products = products;
         cart.forEach(item => this.addStock(item));
+
+        // @ts-ignore
+        this.calculateTotal(this.form.get('stock').value);
+        // @ts-ignore
+        this.form.get('stock')
+          .valueChanges.subscribe(value => this.calculateTotal(value));
       });
+  }
+
+  calculateTotal(value: Item[]): void {
+    const total = value.reduce((prev, next) => {
+      // @ts-ignore
+      return prev + (next.quantity * this.productMap.get(next.product_id).price);
+    }, 0);
+    this.total = total;
   }
 
   // @ts-ignore

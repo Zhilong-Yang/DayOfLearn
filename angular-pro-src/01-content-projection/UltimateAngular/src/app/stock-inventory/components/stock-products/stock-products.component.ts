@@ -13,7 +13,6 @@ import {Product} from '../../models/product.interface';
 
           <div class="stock-product__content" [formGroupName]="i">
             <div class="stock-product__name">
-              {{ i }}
               {{ getProduct(item.value.product_id)?.name }}
             </div>
             <div class="stock-product__price">
