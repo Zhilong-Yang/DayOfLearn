@@ -13,10 +13,11 @@ import {Product} from '../../models/product.interface';
 
           <div class="stock-product__content" [formGroupName]="i">
             <div class="stock-product__name">
-              {{ getProduct(item.value.product_id)!.name }}
+              {{ i }}
+              {{ getProduct(item.value.product_id)?.name }}
             </div>
             <div class="stock-product__price">
-              {{ getProduct(item.value.product_id)!.price | currency:'USD':true }}
+              {{ getProduct(item.value.product_id)?.price | currency:'USD':'symbol' }}
             </div>
             <input
               type="number"
@@ -45,8 +46,7 @@ export class StockProductsComponent {
   @Input()
   map!: Map<number, Product>;
 
-  // tslint:disable-next-line:typedef
-  getProduct(id: number) {
+  getProduct(id: number): Product | undefined {
     return this.map.get(id);
   }
 
