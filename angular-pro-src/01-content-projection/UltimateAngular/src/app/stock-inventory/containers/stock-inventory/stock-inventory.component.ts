@@ -20,7 +20,9 @@ import {Product} from '../../models/product.interface';
         </app-stock-selector>
 
         <app-stock-products
-          [parent]="form">
+          [parent]="form"
+          (removed)="removeStock($event)">
+          >
         </app-stock-products>
 
         <div class="stock-inventory__buttons">
@@ -54,8 +56,8 @@ export class StockInventoryComponent {
     }),
     selector: this.createStock({}),
     stock: new FormArray([
-      this.createStock({ product_id: 1, quantity: 10 }),
-      this.createStock({ product_id: 3, quantity: 50 }),
+      this.createStock({product_id: 1, quantity: 10}),
+      this.createStock({product_id: 3, quantity: 50}),
     ])
   });
 
@@ -67,10 +69,16 @@ export class StockInventoryComponent {
       quantity: new FormControl(stock.quantity || 10)
     });
   }
+
   // @ts-ignore
   addStock(stock): void {
     const control = this.form.get('stock') as FormArray;
     control.push(this.createStock(stock));
+  }
+
+  removeStock({group, index}: { group: FormGroup, index: number }): void {
+    const control = this.form.get('stock') as FormArray;
+    control.removeAt(index);
   }
 
   onSubmit(): void {
