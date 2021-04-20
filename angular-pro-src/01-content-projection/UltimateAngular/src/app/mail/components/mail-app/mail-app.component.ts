@@ -8,6 +8,10 @@ import {Component} from '@angular/core';
       <router-outlet>
       </router-outlet>
     </div>
+    <div class="mail">
+      <router-outlet name="pane">
+      </router-outlet>
+    </div>
   `
 })
 export class MailAppComponent {
