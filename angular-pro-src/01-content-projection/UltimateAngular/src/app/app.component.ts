@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   template: `
     <div class="app">
       <header>
-        <img src="/img/logo.svg">
+        <img src="/assets/img/logo.svg">
       </header>
       <div class="app__content">
         <nav>
@@ -30,5 +30,4 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   constructor(private router: Router) {}
   ngOnInit() {}
-
 }
