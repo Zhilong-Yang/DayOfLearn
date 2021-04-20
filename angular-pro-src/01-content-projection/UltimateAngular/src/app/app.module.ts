@@ -4,10 +4,10 @@ import {RouterModule, Routes} from '@angular/router';
 import {MailModule} from './mail/mail.module';
 import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import {DashboardModule} from './dashboard/dashboard.module';
+// import {DashboardModule} from './dashboard/dashboard.module';
 
 export const ROUTES: Routes = [
-  {path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule'},
+  {path: 'dashboard', loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)},
   {path: '**', redirectTo: 'mail/folder/inbox'}
 ];
 
@@ -19,7 +19,7 @@ export const ROUTES: Routes = [
     BrowserModule,
     HttpClientModule,
     MailModule,
-    DashboardModule,
+    // DashboardModule,
     RouterModule.forRoot(ROUTES)
   ],
   bootstrap: [
