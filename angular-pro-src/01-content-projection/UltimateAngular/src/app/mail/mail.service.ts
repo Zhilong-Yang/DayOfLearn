@@ -12,12 +12,20 @@ export class MailService {
   }
 
   getFolder(folder: string): Observable<Mail[]> {
-
     return this.http
       .get(`/assets/${folder}.json`)
       .pipe(
         map((res: any) => {
           return res['messages'];
+        }));
+  }
+
+  getMessage(id: string): Observable<Mail> {
+    return this.http
+      .get("/assets/messages.json")
+      .pipe(
+        map((res: any) => {
+          return res['messages'][parseInt(id) - 1];
         }));
   }
 }
