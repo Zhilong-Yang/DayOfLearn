@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, FormArray, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, FormArray, Validators, AbstractControl} from '@angular/forms';
 
 import {Product, Item} from '../../models/product.interface';
 import {StockInventoryService} from '../../services/stock-inventory.service';
 import {Observable} from 'rxjs';
 import 'rxjs-compat/add/observable/forkJoin';
 import {StockValidators} from './stock-inventory.validators';
+import { map } from 'rxjs/internal/operators/map';
 
 @Component({
   selector: 'app-stock-inventory',
@@ -58,12 +59,16 @@ export class StockInventoryComponent implements OnInit {
 
   form = this.fb.group({
     store: this.fb.group({
-      branch: ['', [Validators.required, StockValidators.checkBranch]],
+      branch: [
+        '',
+        [Validators.required, StockValidators.checkBranch],
+        [this.validateBranch.bind(this)]
+      ],
       code: ['', Validators.required]
     }),
     selector: this.createStock({}),
     stock: this.fb.array([])
-  }, { validator: StockValidators.checkStockExists });
+  }, {validator: StockValidators.checkStockExists});
 
   constructor(
     private fb: FormBuilder,
@@ -125,5 +130,15 @@ export class StockInventoryComponent implements OnInit {
 
   onSubmit(): void {
     console.log('Submit:', this.form.value);
+  }
+  // tslint:disable-next-line:typedef
+  validateBranch(control: AbstractControl) {
+    return this.stockService
+      .checkBranchId(control.value)
+      .map((response: boolean) => {
+        console.log(response);
+        response ? null : { unknownBranch: true }
+      });
+      // .subscribe( (response: boolean) => console.log(response));
   }
 }

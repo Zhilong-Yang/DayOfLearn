@@ -30,4 +30,17 @@ export class StockInventoryService {
       .map((response: Response) => response)
       .catch((error: any) => Observable.throw(error.json()));
   }
+
+  checkBranchId(id: string): Observable<boolean> {
+    // @ts-ignore
+    return this.http
+      .get<string[]>('/assets/branch.json')
+      .map((response: Response) => response)
+      .map((response: string[]) => {
+        console.log(response.includes(id));
+        // tslint:disable-next-line:no-unused-expression
+        response.includes(id);
+      })
+      .catch((error: any) => Observable.throw(error.json()));
+  }
 }
