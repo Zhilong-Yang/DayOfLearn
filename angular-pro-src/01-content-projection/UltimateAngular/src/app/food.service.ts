@@ -10,7 +10,9 @@ export class FoodService {
   constructor(
     private http: HttpClient,
     @Inject(API_TOKEN) private api: string
-  ) {}
+  ) {
+    console.log('Ultimate Angular');
+  }
 
   getFood(category : string): Observable<any[]> {
     // @ts-ignore
