@@ -4,23 +4,23 @@ import {Observable} from 'rxjs/Observable';
 import {SongsService} from '../../services/songs.service';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
-import {ItemOfSong} from '../../../song.item';
+import { Song } from '../../services/songs.service';
 
 @Component({
   selector: 'songs-favourites',
   template: `
     <div class="songs">
-      <div *ngFor="let item of favourites$ | async">
-        {{ item.artist }}
-        {{ item.track }}
-      </div>
+      <songs-list
+        [list]="favourites$ | async">
+        Favourites
+      </songs-list>
     </div>
   `
 })
 export class SongsFavouritesComponent implements OnInit {
 
   // @ts-ignore
-  favourites$: Observable<any[]>;
+  favourites$: Observable<Song[]>;
 
   constructor(
     private store: Store,
@@ -32,7 +32,7 @@ export class SongsFavouritesComponent implements OnInit {
     // @ts-ignore
     this.favourites$ = this.store.select('playlist')
       .filter(Boolean)
-      .map((playlist: ItemOfSong []) => playlist.filter(track => track.favourite));
+      .map((playlist: Song []) => playlist.filter(track => track.favourite));
 
   }
 }

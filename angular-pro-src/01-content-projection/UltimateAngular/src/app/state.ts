@@ -1,5 +1,5 @@
-import { ItemOfSong } from './song.item';
+import {Song} from './songs/services/songs.service';
 
 export interface State {
-  playlist: ItemOfSong []
+  playlist: Song []
 }
