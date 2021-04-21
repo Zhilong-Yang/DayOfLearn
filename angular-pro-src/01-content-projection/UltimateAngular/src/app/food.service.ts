@@ -1,23 +1,23 @@
-import { Injectable, Inject } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import {HttpClient} from "@angular/common/http";
-import { map } from 'rxjs/internal/operators/map';
-import {API_TOKEN} from "./token";
+import {map} from 'rxjs/internal/operators/map';
 
 @Injectable()
 export class FoodService {
   constructor(
     private http: HttpClient,
-    @Inject(API_TOKEN) private api: string
+    private api: string
   ) {
-    console.log('Ultimate Angular');
+    console.log(this.api);
   }
 
-  getFood(category : string): Observable<any[]> {
+  getFood(category: string): Observable<any[]> {
+
     // @ts-ignore
     return this.http
-      .get(this.api)
+      .get('/assets/food.json')
       .pipe(
         map((res: any) => {
           return res[category];

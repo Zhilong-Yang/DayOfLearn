@@ -1,16 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { FoodService } from '../food.service';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {FoodService} from '../food.service';
+import {HttpClient} from "@angular/common/http";
 
 interface Pizza {
   name: string,
   price: number
 }
 
+// @ts-ignore
+export function PizzaFactory(http) {
+  return new FoodService(http, '/api/pizzas');
+}
+
 @Component({
   selector: 'pizza-viewer',
   providers: [
-    FoodService
+    {
+      provide: FoodService,
+      useFactory: PizzaFactory,
+      deps: [
+        HttpClient
+      ]
+    }
   ],
   template: `
     <div>
@@ -22,7 +34,10 @@ interface Pizza {
 })
 export class PizzaViewerComponent implements OnInit {
   items$?: Observable<Pizza[]>;
-  constructor(private foodService: FoodService) {}
+
+  constructor(private foodService: FoodService) {
+  }
+
   ngOnInit() {
     this.items$ = this.foodService.getFood("pizzas");
   }

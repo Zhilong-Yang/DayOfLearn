@@ -1,16 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { FoodService } from '../food.service';
+import {HttpClient} from "@angular/common/http";
 
 interface Side {
   name: string,
   price: number
 }
 
+// @ts-ignore
+export function SideFactory(http) {
+  return new FoodService(http, '/api/sides');
+}
+
 @Component({
   selector: 'side-viewer',
   providers: [
-    FoodService
+    {
+      provide: FoodService,
+      useFactory: SideFactory,
+      deps: [
+        HttpClient
+      ]
+    }
   ],
   template: `
     <div>
