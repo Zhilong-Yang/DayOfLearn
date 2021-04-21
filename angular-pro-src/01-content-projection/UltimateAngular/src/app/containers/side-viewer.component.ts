@@ -8,21 +8,10 @@ interface Side {
   price: number
 }
 
-// @ts-ignore
-export function SideFactory(http) {
-  return new FoodService(http, '/api/sides');
-}
-
 @Component({
   selector: 'side-viewer',
   providers: [
-    {
-      provide: FoodService,
-      useFactory: SideFactory,
-      deps: [
-        HttpClient
-      ]
-    }
+    FoodService
   ],
   template: `
     <div>
@@ -36,6 +25,6 @@ export class SideViewerComponent implements OnInit {
   items$?: Observable<Side[]>;
   constructor(private foodService: FoodService) {}
   ngOnInit() {
-    this.items$ = this.foodService.getFood("sides");
+    this.items$ = this.foodService.getSides();
   }
 }

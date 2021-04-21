@@ -8,21 +8,10 @@ interface Pizza {
   price: number
 }
 
-// @ts-ignore
-export function PizzaFactory(http) {
-  return new FoodService(http, '/api/pizzas');
-}
-
 @Component({
   selector: 'pizza-viewer',
   providers: [
-    {
-      provide: FoodService,
-      useFactory: PizzaFactory,
-      deps: [
-        HttpClient
-      ]
-    }
+    FoodService
   ],
   template: `
     <div>
@@ -39,6 +28,6 @@ export class PizzaViewerComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.items$ = this.foodService.getFood("pizzas");
+    this.items$ = this.foodService.getPizzas();
   }
 }

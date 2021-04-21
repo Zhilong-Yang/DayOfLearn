@@ -1,3 +1,3 @@
 import { InjectionToken } from '@angular/core';
 
-export const API_TOKEN = new InjectionToken<string>('api2');
+export const API_TOKEN = new InjectionToken<string>('api');
