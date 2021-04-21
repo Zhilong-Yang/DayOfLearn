@@ -26,6 +26,7 @@ import {Mail} from '../../models/mail.interface';
 })
 export class MailViewComponent implements OnInit {
   reply = '';
+  hasUnsavedChanges = false;
   message: Observable<Mail> = this.route.data.pluck('message');
 
   constructor(private route: ActivatedRoute) {
@@ -34,15 +35,18 @@ export class MailViewComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(() => {
       this.reply = '';
+      this.hasUnsavedChanges = false;
     });
   }
 
   // @ts-ignore
   updateReply(event) {
     this.reply = event.target.value;
+    this.hasUnsavedChanges = true;
   }
 
   sendReply() {
     console.log('Sent!', this.reply);
+    this.hasUnsavedChanges = false;
   }
 }
