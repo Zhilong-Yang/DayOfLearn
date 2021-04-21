@@ -1,22 +1,20 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {FoodStoreService} from './food-store/food-store.service';
+import {StoreJson} from "./food-store/config";
 
 @Component({
   selector: 'app-root',
-  styles: [`
-    pizza-viewer,
-    side-viewer,
-    drink-viewer {
-      display: block;
-      border-bottom: 2px solid #eee;
-      padding: 20px 0;
-    }
-  `],
   template: `
     <div>
-      <pizza-viewer></pizza-viewer>
-      <side-viewer></side-viewer>
-      <drink-viewer></drink-viewer>
+<!--      {{store | async| json}}-->
+      Food Store ({{ (store | async)?.name }})
     </div>
   `
 })
-export class AppComponent {}
+export class AppComponent {
+  // @ts-ignore
+  store = this.foodService.getStore();
+
+  constructor(private foodService: FoodStoreService) {
+  }
+}
