@@ -1,33 +1,29 @@
-import {NgModule} from '@angular/core';
-import {BrowserModule} from '@angular/platform-browser';
-import {RouterModule, Routes} from '@angular/router';
-import {MailModule} from './mail/mail.module';
-import {AppComponent} from './app.component';
-import {HttpClientModule} from '@angular/common/http';
-import "rxjs-compat/add/observable/of";
-import {AuthModule} from "./auth/auth.module";
-import {AuthGuard} from "./auth/auth.guard";
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
 
-export const ROUTES: Routes = [
-  {path: 'dashboard', canLoad: [AuthGuard], loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)},
-  {path: '**', redirectTo: 'mail/folder/inbox'}
-];
+import { PizzaViewerComponent } from './containers/pizza-viewer.component';
+import { DrinkViewerComponent } from './containers/drink-viewer.component';
+import { SideViewerComponent } from './containers/side-viewer.component';
+
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PizzaViewerComponent,
+    DrinkViewerComponent,
+    SideViewerComponent
   ],
-
   imports: [
     BrowserModule,
-    HttpClientModule,
-    MailModule,
-    AuthModule,
-    RouterModule.forRoot(ROUTES)
+    HttpClientModule
   ],
   bootstrap: [
     AppComponent
+  ],
+  providers: [
+    { provide: 'api', useValue: '/assets/food.json' }
   ]
 })
-export class AppModule {
-}
+export class AppModule {}
