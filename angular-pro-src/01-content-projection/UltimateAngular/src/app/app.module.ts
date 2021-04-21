@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { PizzaViewerComponent } from './containers/pizza-viewer.component';
 import { DrinkViewerComponent } from './containers/drink-viewer.component';
 import { SideViewerComponent } from './containers/side-viewer.component';
-
+import { API_TOKEN } from './token';
 import { AppComponent } from './app.component';
 
 @NgModule({
@@ -23,7 +23,7 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   providers: [
-    { provide: 'api', useValue: '/assets/food.json' }
+    { provide: API_TOKEN, useValue: '/assets/food.json' }
   ]
 })
 export class AppModule {}
