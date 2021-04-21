@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-
-import { Store } from '../../../store';
+import {Store} from '../../../store';
 import {Observable} from 'rxjs/Observable';
 import {SongsService} from '../../services/songs.service';
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
+import {ItemOfSong} from '../../../song.item';
 
 @Component({
   selector: 'songs-favourites',
@@ -15,7 +17,7 @@ import {SongsService} from '../../services/songs.service';
     </div>
   `
 })
-export class SongsFavouritesComponent implements OnInit{
+export class SongsFavouritesComponent implements OnInit {
 
   // @ts-ignore
   favourites$: Observable<any[]>;
@@ -23,10 +25,14 @@ export class SongsFavouritesComponent implements OnInit{
   constructor(
     private store: Store,
     private songsService: SongsService
-  ) {}
-
-  ngOnInit() {
-    this.favourites$ = this.store.select('playlist');
+  ) {
   }
 
+  ngOnInit() {
+    // @ts-ignore
+    this.favourites$ = this.store.select('playlist')
+      .filter(Boolean)
+      .map((playlist: ItemOfSong []) => playlist.filter(track => track.favourite));
+
+  }
 }

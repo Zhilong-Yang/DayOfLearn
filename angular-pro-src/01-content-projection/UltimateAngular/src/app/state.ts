@@ -1,3 +1,5 @@
+import { ItemOfSong } from './song.item';
+
 export interface State {
-  playlist: any[]
+  playlist: ItemOfSong []
 }
