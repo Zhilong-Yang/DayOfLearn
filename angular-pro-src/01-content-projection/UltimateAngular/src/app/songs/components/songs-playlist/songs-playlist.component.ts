@@ -10,7 +10,8 @@ import {SongsService} from '../../services/songs.service';
   template: `
     <div class="songs">
       <songs-list
-        [list]="playlist$ | async">
+        [list]="playlist$ | async"
+        (toggle)="onToggle($event)">
         Playlist
       </songs-list>
     </div>
@@ -37,4 +38,8 @@ export class SongsPlaylistComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  // @ts-ignore
+  onToggle(event) {
+    this.songsService.toggle(event);
+  }
 }
