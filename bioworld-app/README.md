@@ -10,6 +10,7 @@
 
 ```bash
 ng config cli.packageManager cnpm
+npm install -g cnpm --registry=https://registry.npm.taobao.org
 npm install npm@latest -g
 cnpm install cnpm@latest -g
 
