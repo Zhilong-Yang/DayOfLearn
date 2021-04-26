@@ -9,6 +9,8 @@
 2. 升级node.js到最新稳定版：
 
 ```bash
+ng config cli.packageManager cnpm
+
 npm cache clean -f
 npm install -g n -force
 node -v
