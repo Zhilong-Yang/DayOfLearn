@@ -10,6 +10,8 @@
 
 ```bash
 ng config cli.packageManager cnpm
+npm install npm@latest -g
+cnpm install cnpm@latest -g
 
 npm cache clean -f
 npm install -g n -force
